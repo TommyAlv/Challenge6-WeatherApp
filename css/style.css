@@ -7,6 +7,9 @@
 body {
     font-size: 16px;
     font-family: interstate, sans-serif;
+    background-image: url(https://images.unsplash.com/photo-1530908295418-a12e326966ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80);
+    background-color: #A2999E0b;
+    height: 100vh;
 }
 
 .hero {
@@ -40,20 +43,23 @@ body {
     text-align: right;
 }
 
-.weather-active,.weather-5day, .button {
+.weather-active,.weather-fiveday, .button {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .weather-active {
     font-size: 28px;
+    background-color: #A2999E0b;
 }
 
 .five-day-text {
     font-size: 25px;
+    font-weight: 700;
 }
 
-.weather-5day {
+.weather-fiveday {
     margin-left: 2px;
+    background-color: #A2999E0b;
 }
 
 button:hover {
@@ -74,9 +80,18 @@ h1.temp {
     font-weight: 700;
 }
 
+.card {
+    align-items: center;
+    background-color: transparent;
+}
+
 
 /* Change text alignment to ensure best formatting on smaller screens */
 @media screen and (max-width: 768px) {
+    body {
+        background-image: none;
+    }
+
     .title {
         font-size: 50px;
     }
@@ -85,7 +100,7 @@ h1.temp {
         text-align: center;
     }
 
-    .weather-5day {
+    .weather-fiveday {
         margin-left: none;
     }
     

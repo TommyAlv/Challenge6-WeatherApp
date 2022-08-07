@@ -59,7 +59,7 @@ fiveDayForecast = function (data) {
         const date = moment.utc(data[i].dt * 1000).format('MMM, D, YYYY');
         const icon = data[i].weather[0].icon;
 
-        const divColumn = $('<div>').addClass('column is-one-fifth day');
+        const divColumn = $('<div>').addClass('column is-one-fifth day has-text-centered card');
         const edate = $('<p>').text(date);
         const eicon = $('<img>').attr('src', 'https://openweathermap.org/img/wn/' + icon + '.png');
         const ewind = $('<p>').text('Wind Speed: ' + data[i].wind_speed + ' mph');
