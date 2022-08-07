@@ -5,13 +5,108 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+        integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.typekit.net/wtm3yeh.css">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
+    <title>Weather Forecast</title>
 </head>
 
 <body>
+    <!-- Hero -->
+    <section class="hero is-small">
+        <div class="hero-body">
+            <p class="title has-text-centered">
+                Weather Dashboard
+            </p>
+        </div>
+    </section>
+    <!-- Box W/ Search Text and Input -->
+    <section>
+        <div class="box search-info">
+            <div class="columns">
+                <div class="column city-select is-one-third">
+                    Select A City:
+                </div>
+                <div class="column city-search">
+                    <input class="input is-primary" type="text" placeholder="Search For A City">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Columns With Cities and Active Weather -->
+    <section>
+        <div class="weather-app-section">
+            <div class="columns">
+                <div class="column is-one-third">
+                    <!-- Buttons For Recent Cities -->
+                    <button class="button is-medium is-fullwidth my-4">TEST</button>
+                    <button class="button is-medium is-fullwidth my-4">TEST</button>
+                    <button class="button is-medium is-fullwidth my-4">TEST</button>
+                    <button class="button is-medium is-fullwidth my-4">TEST</button>
+                    <button class="button is-medium is-fullwidth my-4">TEST</button>
+                    <button class="button is-medium is-fullwidth my-4">TEST</button>
+                </div>
+                <div class="column is-two-thirds">
+                    <div class="container is-fullwidth">
+                        <!-- 5 Day Forecast Blocks -->
+                        <div class="box mt-4 is-fullwidth weather-active">
+                            <p>CITY (DATE) [ICON]</p>
+                            <p>TEMP</p>
+                            <p>WIND</p>
+                            <p>HUMIDITY</p>
+                            <p>UV INDEX</p>
+                        </div>
+                    </div>
+                    <div class="container five-day has-text-centered mt-4">
+                        <span class="five-day-text">5-Day Forecast</span>
+                    </div>
+                    <div class="container is-fullwidth ml-3">
+                        <div class="box columns mt-4 is-fullwidth weather-5day">
+                            <div class="column day day-one is-one-fifth">
+                                <p>Date</p>
+                                <p>[ICON]</p>
+                                <p>Wind</p>
+                                <p>Temp</p>
+                                <p>Humidity</p>
+                            </div>
+                            <div class="column day day-two is-one-fifth">
+                                <p>Date</p>
+                                <p>[ICON]</p>
+                                <p>Wind</p>
+                                <p>Temp</p>
+                                <p>Humidity</p>
+                            </div>
+                            <div class="column day day-three is-one-fifth">
+                                <p>Date</p>
+                                <p>[ICON]</p>
+                                <p>Wind</p>
+                                <p>Temp</p>
+                                <p>Humidity</p>
+                            </div>
+                            <div class="column day day-four is-one-fifth">
+                                <p>Date</p>
+                                <p>[ICON]</p>
+                                <p>Wind</p>
+                                <p>Temp</p>
+                                <p>Humidity</p>
+                            </div>
+                            <div class="column day day-five is-one-fifth">
+                                <p>Date</p>
+                                <p>[ICON]</p>
+                                <p>Wind</p>
+                                <p>Temp</p>
+                                <p>Humidity</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script src="./js/script.js"></script>
 </body>
 
 </html>

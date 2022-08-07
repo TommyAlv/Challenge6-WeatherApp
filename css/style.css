@@ -1,0 +1,50 @@
+@import url("https://use.typekit.net/wtm3yeh.css");
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-family: interstate, sans-serif;
+}
+
+.hero {
+    background: linear-gradient(43deg, #98E2C6 0%, #9198e5 100%);
+    font-weight: 700;
+}
+
+.title {
+    color: white;
+    font-size: 70px;
+}
+
+.button {
+    border-radius: 10px;
+    background-color: lightgray;
+}
+
+.city-select {
+    font-size: 25px;
+    text-align: right;
+}
+
+.weather-active,.weather-5day, .button {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.five-day-text {
+    font-size: 25px;
+}
+
+/* Change text alignment to ensure best formatting on smaller screens */
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 50px;
+    }
+
+    .city-select {
+        text-align: center;
+    }
+    
+}
