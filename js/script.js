@@ -1,6 +1,15 @@
 // https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 const apikey = '9c14403d9a3568a285bddd5f2f7e5e08';
 
+let recentSearches = [];
+
+let saveSearch = function (city) {
+    if (!recentSearches.includes(city)) {
+        recentSearches.push(city);
+        localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+    }
+}
+
 fetchForecast = function (lat, lon) {
     let fetchURL = 'https://api.openweathermap.org/data/2.5/onecall?lat='
         + lat
@@ -16,7 +25,6 @@ fetchForecast = function (lat, lon) {
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (data) {
-                    console.log(data.daily[0])
                     const { uvi } = data.current;
                     document.querySelector('.uvi').innerText = 'UV Index ' + uvi;
                     if (uvi <= 2) {
@@ -24,7 +32,7 @@ fetchForecast = function (lat, lon) {
                     }
                     else if (uvi < 6) {
                         $('.uvi').addClass('tag is-warning').removeClass('is-success is-danger');
-                    } 
+                    }
                     else if (uvi > 6) {
                         $('.uvi').addClass('tag is-danger').removeClass('is-sucess is-warning');
                     }
@@ -39,15 +47,21 @@ fetchForecast = function (lat, lon) {
         });
 };
 
+clearFiveDay = function () {
+    $('.weather-fiveday').empty();
+};
+
 fiveDayForecast = function (data) {
+    clearFiveDay();
+
     for (let i = 1; i < 6; i++) {
 
         const date = moment.utc(data[i].dt * 1000).format('MMM, D, YYYY');
         const icon = data[i].weather[0].icon;
-        
+
         const divColumn = $('<div>').addClass('column is-one-fifth day');
         const edate = $('<p>').text(date);
-        const eicon = $('<img>').attr('src', 'https://openweathermap.org/img/wn/' + icon + '@2x.png');
+        const eicon = $('<img>').attr('src', 'https://openweathermap.org/img/wn/' + icon + '.png');
         const ewind = $('<p>').text('Wind Speed: ' + data[i].wind_speed + ' mph');
         const etemp = $('<p>').text('Temp: ' + data[i].temp.day + '°F');
         const ehumidity = $('<p>').text('Humidity: ' + data[i].humidity + '%');
@@ -56,6 +70,25 @@ fiveDayForecast = function (data) {
         divColumn.append(edate, eicon, ewind, etemp, ehumidity);
         $('.weather-fiveday').append(divColumn);
 
+    }
+};
+
+populateArray = function () {
+    recentSearches = JSON.parse(localStorage.getItem('recentSearches'));
+    if (!recentSearches) {
+        recentSearches = []
+    }
+    generateRecentSearches(recentSearches);
+
+};
+
+generateRecentSearches = function (data) {
+    $('.recent-searches').empty();
+    for (let i = data.length-1; i >= 0; i--) {
+
+        const recentButton = $('<button>').addClass('recent-search-button is-fullwidth button').attr('city', data[i]).text(data[i]);
+
+        $('.recent-searches').append(recentButton);
     }
 };
 
@@ -72,14 +105,13 @@ let weather = {
     },
     displayWeather: function (data) {
         const { name } = data;
-        const { country } = data.sys;
         const { icon, description } = data.weather[0];
         const { temp, humidity } = data.main;
         const { speed } = data.wind;
         const { lat } = data.coord;
         const { lon } = data.coord;
         document.querySelector('.city').innerText = 'Weather In ' + name;
-        document.querySelector('.icon').src = 'https://openweathermap.org/img/wn/' + icon + '@2x.png';
+        document.querySelector('.weathericon').src = 'https://openweathermap.org/img/wn/' + icon + '@2x.png';
         document.querySelector('.description').innerText = description;
         document.querySelector('.temp').innerText = temp + '°F';
         document.querySelector('.humidity').innerText = 'Humidity: ' + humidity + '%';
@@ -88,20 +120,35 @@ let weather = {
         fetchForecast(lat, lon);
 
     },
-    search: function () {
-        this.fetchWeather(document.querySelector('.search-bar').value);
+    search: function (city) {
+        // let searchValue = document.querySelector('.search-bar').value
+
+        this.fetchWeather(city);
+        saveSearch(city);
     }
 };
 
 
+populateArray();
+
+
+document.querySelector('.recent-searches').addEventListener('click', function (event) {
+    let city = event.target.getAttribute('city');
+    weather.search(city);
+
+});
 
 document.querySelector('.search button').addEventListener('click', function () {
-    weather.search();
+    let searchValue = document.querySelector('.search-bar').value
+    weather.search(searchValue);
+    populateArray();
 });
 
 document.querySelector('.search-bar').addEventListener('keyup', function (event) {
     if (event.key == 'Enter') {
-        weather.search();
+        let searchValue = document.querySelector('.search-bar').value
+        weather.search(searchValue);
+        populateArray();
     }
 });
 
