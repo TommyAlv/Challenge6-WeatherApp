@@ -64,6 +64,11 @@ h1.temp {
     text-transform: capitalize;
 }
 
+.recently-visited {
+    font-size: 30px;
+    font-weight: 700;
+}
+
 
 /* Change text alignment to ensure best formatting on smaller screens */
 @media screen and (max-width: 768px) {

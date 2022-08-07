@@ -12,30 +12,42 @@ let weather = {
             .then((data) => this.displayWeather(data));
     },
 displayWeather: function(data) {
+        console.log(data);
         const { name } = data;
         const { country } = data.sys;
         const { icon, description } = data.weather[0];
         const { temp, humidity } = data.main;
         const { speed } = data.wind;
+        const { lat } = data.coord;
+        const { lon } = data.coord;
+        console.log(name,lat,lon);
         document.querySelector('.city').innerText = 'Weather In ' + name;
         document.querySelector('.icon').src = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
         document.querySelector('.description').innerText = description;
         document.querySelector('.temp').innerText = temp + '°F';
         document.querySelector('.humidity').innerText = 'Humidity: ' + humidity + '%';
         document.querySelector('.wind').innerText = 'Wind Speed: ' + speed + 'mph';
+
+        fiveDay.fetchFiveDay(lat,lon);
 },
 search: function() {
     this.fetchWeather(document.querySelector('.search-bar').value);
 }
 };
 
+
+
 let fiveDay = {
     apikey: '9c14403d9a3568a285bddd5f2f7e5e08',
-    fetchFiveDay: function (city) {
-        fetch("https://api.openweathermap.org/data/2.5/forecast?q="
-        + city
-        + "&appid="
+    fetchFiveDay: function (lat,lon) {
+        console.log(lat,lon);
+        fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' 
+        + lat 
+        + '&lon=' 
+        + lon 
+        + '&appid=' 
         + this.apikey
+        + '&units=imperial'
     )
         .then((response) => response.json())
             .then((data) => this.displayFiveDay(data));
@@ -43,8 +55,17 @@ let fiveDay = {
     displayFiveDay: function(data) {
         console.log(data);
         const { dt_txt } = data.list[0];
+        const { icon } = data.list[0].weather[0];
+        const { speed } = data.list[0].wind;
+        const { temp } = data.list[0].main;
+        const { humidity } = data.list[0].main;
+
         console.log(dt_txt);
         document.querySelector('.day-one-date').innerText = dt_txt;
+        document.querySelector('.day-one-icon').innerText = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
+        document.querySelector('.day-one-wind').innerText = 'Wind Speed: ' + speed + 'mph';
+        document.querySelector('.day-one-temp').innerText = temp + '°F';
+        document.querySelector('.day-one-humidity').innerText = 'Humidity: ' + humidity + '%';
         
     }
 }
@@ -64,4 +85,4 @@ document.querySelector('.search-bar').addEventListener('keyup', function (event)
 });
 
 weather.fetchWeather('American Fork');
-fiveDay.fetchFiveDay('American Fork');
+// fiveDay.fetchFiveDay('American Fork');
