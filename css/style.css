@@ -10,9 +10,11 @@ body {
 }
 
 .hero {
-    background: linear-gradient(43deg, #98E2C6 0%, #9198e5 100%);
+    background: linear-gradient(45deg, #A2999E 0%, #3E505B 100%);
     font-weight: 700;
 }
+
+.search-info {}
 
 .title {
     color: white;
@@ -20,8 +22,10 @@ body {
 }
 
 .button {
-    border-radius: 10px;
-    background-color: lightgray;
+    border-radius: 18px;
+    background: linear-gradient(45deg, #A2999E 0%, #3E505B 100%);
+    color: white;
+    font-weight: 500;
 }
 
 .city-select {
@@ -31,6 +35,10 @@ body {
 
 .weather-active,.weather-5day, .button {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.weather-active {
+    font-size: 28px;
 }
 
 .five-day-text {
