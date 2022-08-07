@@ -14,7 +14,9 @@ body {
     font-weight: 700;
 }
 
-.search-info {}
+.search-info {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 
 .title {
     color: white;
@@ -45,6 +47,10 @@ body {
     font-size: 25px;
 }
 
+.weather-5day {
+    margin-left: 2px;
+}
+
 /* Change text alignment to ensure best formatting on smaller screens */
 @media screen and (max-width: 768px) {
     .title {
@@ -53,6 +59,10 @@ body {
 
     .city-select {
         text-align: center;
+    }
+
+    .weather-5day {
+        margin-left: none;
     }
     
 }
