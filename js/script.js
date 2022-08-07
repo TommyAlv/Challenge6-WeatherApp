@@ -1,4 +1,63 @@
 // https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+const apikey = '9c14403d9a3568a285bddd5f2f7e5e08';
+
+fetchForecast = function (lat, lon) {
+    let fetchURL = 'https://api.openweathermap.org/data/2.5/onecall?lat='
+        + lat
+        + '&lon='
+        + lon
+        + '&exclude=hourly,minutely'
+        + '&units=imperial'
+        + '&appid='
+        + apikey;
+
+
+    fetch(fetchURL)
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    console.log(data.daily[0])
+                    const { uvi } = data.current;
+                    document.querySelector('.uvi').innerText = 'UV Index ' + uvi;
+                    if (uvi <= 2) {
+                        $('.uvi').addClass('tag is-success').removeClass('is-warning is-danger');
+                    }
+                    else if (uvi < 6) {
+                        $('.uvi').addClass('tag is-warning').removeClass('is-success is-danger');
+                    } 
+                    else if (uvi > 6) {
+                        $('.uvi').addClass('tag is-danger').removeClass('is-sucess is-warning');
+                    }
+
+                    const { daily } = data
+                    fiveDayForecast(daily);
+                })
+            }
+            else {
+                throw new Error(response.statusText);
+            }
+        });
+};
+
+fiveDayForecast = function (data) {
+    for (let i = 1; i < 6; i++) {
+
+        const date = moment.utc(data[i].dt * 1000).format('MMM, D, YYYY');
+        const icon = data[i].weather[0].icon;
+        
+        const divColumn = $('<div>').addClass('column is-one-fifth day');
+        const edate = $('<p>').text(date);
+        const eicon = $('<img>').attr('src', 'https://openweathermap.org/img/wn/' + icon + '@2x.png');
+        const ewind = $('<p>').text('Wind Speed: ' + data[i].wind_speed + ' mph');
+        const etemp = $('<p>').text('Temp: ' + data[i].temp.day + '°F');
+        const ehumidity = $('<p>').text('Humidity: ' + data[i].humidity + '%');
+
+
+        divColumn.append(edate, eicon, ewind, etemp, ehumidity);
+        $('.weather-fiveday').append(divColumn);
+
+    }
+};
 
 let weather = {
     apikey: '9c14403d9a3568a285bddd5f2f7e5e08',
@@ -11,8 +70,7 @@ let weather = {
             .then((response) => response.json())
             .then((data) => this.displayWeather(data));
     },
-displayWeather: function(data) {
-        console.log(data);
+    displayWeather: function (data) {
         const { name } = data;
         const { country } = data.sys;
         const { icon, description } = data.weather[0];
@@ -20,69 +78,31 @@ displayWeather: function(data) {
         const { speed } = data.wind;
         const { lat } = data.coord;
         const { lon } = data.coord;
-        console.log(name,lat,lon);
         document.querySelector('.city').innerText = 'Weather In ' + name;
-        document.querySelector('.icon').src = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
+        document.querySelector('.icon').src = 'https://openweathermap.org/img/wn/' + icon + '@2x.png';
         document.querySelector('.description').innerText = description;
         document.querySelector('.temp').innerText = temp + '°F';
         document.querySelector('.humidity').innerText = 'Humidity: ' + humidity + '%';
-        document.querySelector('.wind').innerText = 'Wind Speed: ' + speed + 'mph';
+        document.querySelector('.wind').innerText = 'Wind Speed: ' + speed + ' mph';
 
-        fiveDay.fetchFiveDay(lat,lon);
-},
-search: function() {
-    this.fetchWeather(document.querySelector('.search-bar').value);
-}
-};
+        fetchForecast(lat, lon);
 
-
-
-let fiveDay = {
-    apikey: '9c14403d9a3568a285bddd5f2f7e5e08',
-    fetchFiveDay: function (lat,lon) {
-        console.log(lat,lon);
-        fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' 
-        + lat 
-        + '&lon=' 
-        + lon 
-        + '&appid=' 
-        + this.apikey
-        + '&units=imperial'
-    )
-        .then((response) => response.json())
-            .then((data) => this.displayFiveDay(data));
     },
-    displayFiveDay: function(data) {
-        console.log(data);
-        const { dt_txt } = data.list[0];
-        const { icon } = data.list[0].weather[0];
-        const { speed } = data.list[0].wind;
-        const { temp } = data.list[0].main;
-        const { humidity } = data.list[0].main;
-
-        console.log(dt_txt);
-        document.querySelector('.day-one-date').innerText = dt_txt;
-        document.querySelector('.day-one-icon').innerText = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
-        document.querySelector('.day-one-wind').innerText = 'Wind Speed: ' + speed + 'mph';
-        document.querySelector('.day-one-temp').innerText = temp + '°F';
-        document.querySelector('.day-one-humidity').innerText = 'Humidity: ' + humidity + '%';
-        
+    search: function () {
+        this.fetchWeather(document.querySelector('.search-bar').value);
     }
-}
+};
 
 
 
 document.querySelector('.search button').addEventListener('click', function () {
     weather.search();
-    fiveDay.fetchFiveDay();
 });
 
 document.querySelector('.search-bar').addEventListener('keyup', function (event) {
     if (event.key == 'Enter') {
         weather.search();
-        fiveDay.fetchFiveDay();
     }
 });
 
-weather.fetchWeather('American Fork');
-// fiveDay.fetchFiveDay('American Fork');
+weather.fetchWeather('Salt Lake City');

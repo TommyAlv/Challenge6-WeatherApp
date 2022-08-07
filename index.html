@@ -43,7 +43,7 @@
             </div>
         </div>
     </section>
-    <!-- Columns With Cities and Active Weather -->
+    <!-- Columns With Cities and Current Weather -->
     <section>
         <div class="weather-app-section">
             <div class="columns">
@@ -51,75 +51,39 @@
                     <div class="container has-text-centered recently-visited mt-4">
                         Recently Visited
                     </div>
-                    <!-- Buttons For Recent Cities -->
-                    <!-- <button class="button is-medium is-fullwidth my-4">Recently Visited</button>
-                    <button class="button is-medium is-fullwidth my-4">Recently Visited</button>
-                    <button class="button is-medium is-fullwidth my-4">Recently Visited</button>
-                    <button class="button is-medium is-fullwidth my-4">Recently Visited</button>
-                    <button class="button is-medium is-fullwidth my-4">Recently Visited</button>
-                    <button class="button is-medium is-fullwidth my-4">Recently Visited</button> -->
                 </div>
                 <div class="column is-two-thirds">
                     <div class="container is-fullwidth">
-                        <!-- 5 Day Forecast Blocks -->
+                        <!-- Current Weather -->
                         <div class="box mt-4 is-fullwidth weather-active">
-                            <h2 class="city">Weather In American Fork</h2>
-                            <h1 class="temp">51° F</h1>
-                            <div class="flex">
-                                <img src="http://openweathermap.org/img/wn/02n.png" alt="weather icon" class="icon">
-                                <div class="description">Cloudy</div>
-                            </div>
-                            <div class="humidity">Humidity: 60%</div>
-                            <div class="wind">Wind Speed: 6.2 mph</div>
+                            <h2 class="city"></h2>
+                            <h1 class="temp"></h1>
+                            <p class="flex">
+                                <img src="http://openweathermap.org/img/wn/02n@2x.png" alt="weather icon" class="icon">
+                            <p class="description"></p>
+                            </p>
+                            <p class="humidity"></p>
+                            <p class="wind"></p>
+                            <p class="uvi"></p>
                         </div>
                     </div>
                     <div class="container is-two-thirds five-day has-text-centered mt-4">
                         <span class="five-day-text">5-Day Forecast</span>
                     </div>
                     <div class="container is-two-thirds">
-                        <div class="box columns mt-4 weather-5day">
-                            <div class="column day day-one is-one-fifth">
-                                <p class="day-one-date">Date</p>
-                                <img src="http://openweathermap.org/img/wn/02n.png" alt="weather icon" class="day-one-icon"></img>
-                                <p class="day-one-wind">Wind</p>
-                                <p class="day-one-temp">Temp</p>
-                                <p class="day-one-humidity">Humidity</p>
-                            </div>
-                            <div class="column day day-two is-one-fifth">
-                                <p>Date</p>
-                                <p>[ICON]</p>
-                                <p>Wind</p>
-                                <p>Temp</p>
-                                <p>Humidity</p>
-                            </div>
-                            <div class="column day day-three is-one-fifth">
-                                <p>Date</p>
-                                <p>[ICON]</p>
-                                <p>Wind</p>
-                                <p>Temp</p>
-                                <p>Humidity</p>
-                            </div>
-                            <div class="column day day-four is-one-fifth">
-                                <p>Date</p>
-                                <p>[ICON]</p>
-                                <p>Wind</p>
-                                <p>Temp</p>
-                                <p>Humidity</p>
-                            </div>
-                            <div class="column day day-five is-one-fifth">
-                                <p>Date</p>
-                                <p>[ICON]</p>
-                                <p>Wind</p>
-                                <p>Temp</p>
-                                <p>Humidity</p>
-                            </div>
+                        <div class="box columns mt-4 weather-fiveday">
+                            <!-- Weather 5 Day Elements Below -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
     </section>
 
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./js/script.js"></script>
 </body>
 
