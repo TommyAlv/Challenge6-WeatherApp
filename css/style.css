@@ -51,6 +51,20 @@ body {
     margin-left: 2px;
 }
 
+button:hover {
+    background: #7c7c7c6b;
+}
+
+h1.temp {
+    margin: 0;
+    margin-bottom: .4em;
+}
+
+.description {
+    text-transform: capitalize;
+}
+
+
 /* Change text alignment to ensure best formatting on smaller screens */
 @media screen and (max-width: 768px) {
     .title {

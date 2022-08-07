@@ -28,15 +28,15 @@
         <div class="box search-info">
             <div class="columns">
                 <div class="column city-select is-one-third">
-                    Select A City:
+                    Summon The Weather:
                 </div>
-                <div class="column city-search">
+                <div class="column search">
                     <div class="field has-addons">
-                        <div class="control is-expanded">
-                            <input class="input" type="text" placeholder="Search For A City">
+                        <div class="control search is-expanded">
+                            <input class="input search-bar" type="text" placeholder="Search For A City">
                         </div>
                         <div class="control">
-                            <a href="" class="button">Search</a>
+                            <button class="button">Search</button>
                         </div>
                     </div>
                 </div>
@@ -60,11 +60,14 @@
                     <div class="container is-fullwidth">
                         <!-- 5 Day Forecast Blocks -->
                         <div class="box mt-4 is-fullwidth weather-active">
-                            <p>CITY (DATE) [ICON]</p>
-                            <p>TEMP</p>
-                            <p>WIND</p>
-                            <p>HUMIDITY</p>
-                            <p>UV INDEX</p>
+                            <h2 class="city">Weather In American Fork</h2>
+                            <h1 class="temp">51° F</h1>
+                            <div class="flex">
+                                <img src="http://openweathermap.org/img/wn/02n.png" alt="weather icon" class="icon">
+                                <div class="description">Cloudy</div>
+                            </div>
+                            <div class="humidity">Humidity: 60%</div>
+                            <div class="wind">Wind Speed: 6.2 mph</div>
                         </div>
                     </div>
                     <div class="container is-two-thirds five-day has-text-centered mt-4">
@@ -73,7 +76,7 @@
                     <div class="container is-two-thirds">
                         <div class="box columns mt-4 weather-5day">
                             <div class="column day day-one is-one-fifth">
-                                <p>Date</p>
+                                <p class="day-one-date">Date</p>
                                 <p>[ICON]</p>
                                 <p>Wind</p>
                                 <p>Temp</p>
@@ -114,6 +117,7 @@
         </div>
     </section>
 
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
