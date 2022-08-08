@@ -7,8 +7,7 @@
 body {
     font-size: 16px;
     font-family: interstate, sans-serif;
-    background-image: url(https://images.unsplash.com/photo-1530908295418-a12e326966ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80);
-    background-color: #A2999E0b;
+    background-color: #A2999E6b;
     height: 100vh;
 }
 
@@ -33,6 +32,7 @@ body {
     color: white;
     font-weight: 500;
     text-transform: capitalize;
+    border: none;
 }
 
 .column {
@@ -85,7 +85,7 @@ h1.temp {
 
 .card {
     align-items: center;
-    background-color: #7c7c7c4b;
+    background-color: #7c7c7c1b;
 }
 
 .search-bar {
@@ -97,8 +97,9 @@ h1.temp {
 
 /* Change text alignment to ensure best formatting on smaller screens */
 @media screen and (max-width: 768px) {
+
     body {
-        background-image: none;
+        background-color: #A2999E0b;
     }
 
     .title {

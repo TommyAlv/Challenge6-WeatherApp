@@ -3,6 +3,7 @@ const apikey = '9c14403d9a3568a285bddd5f2f7e5e08';
 
 let recentSearches = [];
 
+
 let saveSearch = function (city) {
     if (!recentSearches.includes(city)) {
         recentSearches.push(city);
@@ -86,7 +87,7 @@ generateRecentSearches = function (data) {
     $('.recent-searches').empty();
     for (let i = data.length-1; i >= 0; i--) {
 
-        const recentButton = $('<button>').addClass('recent-search-button is-fullwidth button').attr('city', data[i]).text(data[i]);
+        const recentButton = $('<button>').addClass('recent-search-button is-fullwidth is-centered button mt-2').attr('city', data[i]).text(data[i]);
 
         $('.recent-searches').append(recentButton);
     }
@@ -130,7 +131,6 @@ let weather = {
 
 
 populateArray();
-
 
 document.querySelector('.recent-searches').addEventListener('click', function (event) {
     let city = event.target.getAttribute('city');
