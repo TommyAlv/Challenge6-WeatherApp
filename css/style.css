@@ -19,6 +19,7 @@ body {
 
 .search-info {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: transparent;
 }
 
 .title {
@@ -36,6 +37,7 @@ body {
 
 .column {
     color: black;
+    font-weight: 500;
 }
 
 .city-select {
@@ -64,6 +66,7 @@ body {
 
 button:hover {
     background: #7c7c7c6b;
+    font-weight: 700;
 }
 
 h1.temp {
@@ -82,7 +85,13 @@ h1.temp {
 
 .card {
     align-items: center;
-    background-color: transparent;
+    background-color: #7c7c7c4b;
+}
+
+.search-bar {
+    color: black;
+    font-weight: 700;
+    background-color:ghostwhite;
 }
 
 
@@ -104,6 +113,9 @@ h1.temp {
         margin-left: none;
     }
     
+    .card {
+        background-color: transparent;
+    }
 }
 
 
