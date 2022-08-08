@@ -117,7 +117,6 @@ let weather = {
                     alert('City Not Found, Please Try Again')
                 }
             })
-        // .then((data) => this.displayWeather(data));
     },
     displayWeather: function (data) {
         const { name } = data;
