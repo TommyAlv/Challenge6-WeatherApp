@@ -119,10 +119,4 @@ h1.temp {
     }
 }
 
-@media screen and (max-width: 1185px) {
-    #clear-recent {
-        float:right;
-    }
-}
-
 
