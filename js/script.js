@@ -11,6 +11,11 @@ let saveSearch = function (city) {
     }
 }
 
+let clearlocalStorage = function () {
+    localStorage.removeItem('recentSearches');
+    populateArray();
+};
+
 fetchForecast = function (lat, lon) {
     let fetchURL = 'https://api.openweathermap.org/data/2.5/onecall?lat='
         + lat
@@ -94,15 +99,25 @@ generateRecentSearches = function (data) {
 };
 
 let weather = {
-    apikey: '9c14403d9a3568a285bddd5f2f7e5e08',
     fetchWeather: function (city) {
         fetch("https://api.openweathermap.org/data/2.5/weather?q="
             + city
             + "&units=imperial&appid="
-            + this.apikey
+            + apikey
         )
-            .then((response) => response.json())
-            .then((data) => this.displayWeather(data));
+            .then((response) => {
+                if(response.ok) {
+                    response.json().then((data) => {
+                        saveSearch(city);
+                        populateArray();
+                        this.displayWeather(data)
+                    });
+                }
+                else {
+                    alert('City Not Found, Please Try Again')
+                }
+            })
+            // .then((data) => this.displayWeather(data));
     },
     displayWeather: function (data) {
         const { name } = data;
@@ -122,19 +137,20 @@ let weather = {
 
     },
     search: function (city) {
-        // let searchValue = document.querySelector('.search-bar').value
 
         this.fetchWeather(city);
-        saveSearch(city);
     }
 };
 
 
 populateArray();
 
+document.querySelector('#clear-recent').addEventListener('click', clearlocalStorage);
+
 document.querySelector('.recent-searches').addEventListener('click', function (event) {
     let city = event.target.getAttribute('city');
     weather.search(city);
+    populateArray();
 
 });
 
