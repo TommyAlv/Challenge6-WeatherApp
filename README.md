@@ -3,6 +3,7 @@
 ## Weather App
 
 This weather app allows a user to enter a city and receive the current weather and the 5 day forecast.
+- Has Filler Upon First Arrival, but will populate when a city is entered.
 - Recently searched cities are saved.
 - It will provide a UV Index number and give you a visual color to represent the quality.
 - Icons are provided to give you a glance of what the weather may be like.

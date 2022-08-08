@@ -40,7 +40,7 @@ fetchForecast = function (lat, lon) {
                         $('.uvi').addClass('tag is-warning').removeClass('is-success is-danger');
                     }
                     else if (uvi > 6) {
-                        $('.uvi').addClass('tag is-danger').removeClass('is-sucess is-warning');
+                        $('.uvi').addClass('tag is-danger').removeClass('is-success is-warning');
                     }
 
                     const { daily } = data
@@ -90,7 +90,7 @@ populateArray = function () {
 
 generateRecentSearches = function (data) {
     $('.recent-searches').empty();
-    for (let i = data.length-1; i >= 0; i--) {
+    for (let i = data.length - 1; i >= 0; i--) {
 
         const recentButton = $('<button>').addClass('recent-search-button is-fullwidth is-centered button mt-2').attr('city', data[i]).text(data[i]);
 
@@ -106,7 +106,7 @@ let weather = {
             + apikey
         )
             .then((response) => {
-                if(response.ok) {
+                if (response.ok) {
                     response.json().then((data) => {
                         saveSearch(city);
                         populateArray();
@@ -117,7 +117,7 @@ let weather = {
                     alert('City Not Found, Please Try Again')
                 }
             })
-            // .then((data) => this.displayWeather(data));
+        // .then((data) => this.displayWeather(data));
     },
     displayWeather: function (data) {
         const { name } = data;
